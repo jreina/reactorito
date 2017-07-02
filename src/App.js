@@ -151,6 +151,60 @@ class App extends Component {
           Protein: { value: 5, unit: 'g' },
           Cholesterol: { value: 30, unit: 'mg' }
         }
+      },
+      {
+        name: 'Chorizo',
+        nutrition: {
+          Calories: { value: 150, unit: 'kcal' },
+          Sodium: { value: 640, unit: 'mg' },
+          'Total Fat': { value: 13, unit: 'g' },
+          Potassium: { value: 0, unit: 'mg' },
+          Saturated: { value: 5, unit: 'g' },
+          'Total Carbs': { value: 4, unit: 'g' },
+          Polyunsaturated: { value: 0, unit: 'g' },
+          'Dietary Fiber': { value: 0, unit: 'g' },
+          Monounsaturated: { value: 0, unit: 'g' },
+          Sugars: { value: 1, unit: 'g' },
+          Trans: { value: 0, unit: 'g' },
+          Protein: { value: 6, unit: 'g' },
+          Cholesterol: { value: 40, unit: 'mg' }
+        }
+      },
+      {
+        name: 'Tortilla',
+        nutrition: {
+          Calories: { value: 170, unit: 'kcal' },
+          Sodium: { value: 440, unit: 'mg' },
+          'Total Fat': { value: 3, unit: 'g' },
+          Potassium: { value: 0, unit: 'mg' },
+          Saturated: { value: 1, unit: 'g' },
+          'Total Carbs': { value: 30, unit: 'g' },
+          Polyunsaturated: { value: 0, unit: 'g' },
+          'Dietary Fiber': { value: 3, unit: 'g' },
+          Monounsaturated: { value: 0, unit: 'g' },
+          Sugars: { value: 1, unit: 'g' },
+          Trans: { value: 0, unit: 'g' },
+          Protein: { value: 4, unit: 'g' },
+          Cholesterol: { value: 0, unit: 'mg' }
+        }
+      },
+      {
+        name: 'Beans',
+        nutrition: {
+          Calories: { value: 70, unit: 'kcal' },
+          Sodium: { value: 393, unit: 'mg' },
+          'Total Fat': { value: 0, unit: 'g' },
+          Potassium: { value: 280, unit: 'mg' },
+          Saturated: { value: 0, unit: 'g' },
+          'Total Carbs': { value: 9, unit: 'g' },
+          Polyunsaturated: { value: 0, unit: 'g' },
+          'Dietary Fiber': { value: 3, unit: 'g' },
+          Monounsaturated: { value: 0, unit: 'g' },
+          Sugars: { value: 1, unit: 'g' },
+          Trans: { value: 0, unit: 'g' },
+          Protein: { value: 4, unit: 'g' },
+          Cholesterol: { value: 0, unit: 'mg' }
+        }
       }
     ]
   }
