@@ -19,11 +19,11 @@ class App extends Component {
     }
   }
   _ingredients = {
-    amounts: [ 
-      { name: 'light', quantity: 1 }, 
+    amounts: [
+      { name: 'light', quantity: 1 },
       { name: 'regular', quantity: 2 },
-      { name: 'extra', quantity: 3 }, 
-      { name: 'double', quantity: 4} 
+      { name: 'extra', quantity: 3 },
+      { name: 'double', quantity: 4 }
     ],
     options: [
       {
@@ -156,7 +156,9 @@ class App extends Component {
   }
   _addBurrito() {
     this.setState({ burritos: this.state.burritos.concat([this.state.currentBurrito]), currentBurrito: [] })
-    console.log(this.state)
+  }
+  _removeBurrito(index) {
+    return () => { this.setState({ burritos: this.state.burritos.filter((b, bIndex) => index !== bIndex) }) }
   }
   _addIngredient(newIngredient) {
     let ingredients = this.state.currentBurrito.filter(item => item.ingredient !== newIngredient.ingredient)
@@ -172,17 +174,21 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React<span onClick={this._clickorito.bind(this)}>[orito]</span></h2>
         </div>
-          <div className="col-md-3">
-            <BurritoForm addIngredient={this._addIngredient.bind(this)} clickCount={this.state.clickCount} ingredientOptions={this._ingredients}/>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-3">
+              <BurritoForm addIngredient={this._addIngredient.bind(this)} clickCount={this.state.clickCount} ingredientOptions={this._ingredients} />
+            </div>
+            <div className="col-md-3">
+              <IngredientsContainer ingredients={this.state.currentBurrito} addBurrito={this._addBurrito.bind(this)} />
+            </div>
+            <div className="col-md-3">
+              <NutritionContainer ingredients={this.state.currentBurrito} options={this._ingredients} />
+            </div>
+            <div className="col-md-3">
+              <BurritoList burritos={this.state.burritos} removeBurrito={this._removeBurrito.bind(this)} />
+            </div>
           </div>
-        <div className="col-md-3">
-          <IngredientsContainer ingredients={this.state.currentBurrito}  addBurrito={this._addBurrito.bind(this)} />
-        </div>
-        <div className="col-md-3">
-          <NutritionContainer ingredients={this.state.currentBurrito} options={this._ingredients} />
-        </div>
-        <div className="col-md-3">
-        <BurritoList burritos={this.state.burritos} />
         </div>
       </div>
     )
