@@ -1,14 +1,12 @@
 import React from 'react'
 import BurritoCondensed from './BurritoCondensed'
 
-const BurritoList = ({burritos}) => 
-<div className="row">
-  {
-    burritos.map((burrito, index) => 
-    <div className="col-md-3" key={index}>
-      <BurritoCondensed burritoIndex={index} ingredients={burrito} />
-    </div>)
-  }
-</div>
+const BurritoList = ({ burritos }) =>
+    <div>
+      {
+        burritos.map((burrito, index) =>
+          <BurritoCondensed key={index} burritoIndex={index} ingredients={burrito} />)
+      }
+    </div>
 
 export default BurritoList

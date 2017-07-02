@@ -3,27 +3,18 @@ import BurritoForm from './BurritoForm'
 import IngredientsContainer from './IngredientsContainer'
 import NutritionContainer from './NutritionContainer'
 
-const Burrito = ({ addIngredient, ingredients, clickCount, addBurrito }) =>
+const Burrito = ({ addIngredient, ingredients, clickCount, addBurrito, ingredientOptions }) =>
   <div className="burrito">
     <div className="container">
       <div className="row">
         <div className="col-md-3">
-          <BurritoForm addIngredient={addIngredient} clickCount={clickCount} />
+          <BurritoForm addIngredient={addIngredient} clickCount={clickCount} ingredientOptions={ingredientOptions}/>
         </div>
         <div className="col-md-3">
-          <IngredientsContainer ingredients={ingredients} />
+          <IngredientsContainer ingredients={ingredients}  addBurrito={addBurrito} />
         </div>
         <div className="col-md-3">
-          <NutritionContainer ingredients={ingredients} />
-        </div>
-      </div>
-    </div>
-    <div className="container">
-      <div className="row">
-        <div className="col-md-12">
-          {
-            <button className="btn btn-success btn-block" disabled={!ingredients.length} onClick={addBurrito}>Add Burrito</button>
-          }
+          <NutritionContainer ingredients={ingredients} options={ingredientOptions} />
         </div>
       </div>
     </div>

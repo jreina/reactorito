@@ -2,8 +2,8 @@ import React from 'react'
 
 const BurritoCondensed = ({ingredients, burritoIndex}) =>
 <div className="alert alert-success">
-  <h2>Burrito #{burritoIndex + 1}</h2>
-  {ingredients.map((ingredient, index) => <p key={index}>{ingredient.count} <strong>{ingredient.ingredient}</strong></p>)}
+  <strong>Burrito #{burritoIndex + 1}</strong><br />
+  {ingredients.map((ingredient, index) => <p key={index}>{ingredient.amount.name} <strong>{ingredient.ingredient}</strong></p>)}
 </div>
 
 export default BurritoCondensed

@@ -1,16 +1,13 @@
 import React from 'react'
-import NutritionItem from './NutritionItem'
-import NutritionTotal from './NutritionTotal' 
 
 const NutritionList = ({ nutrition }) => 
   <ul className="list-group">
     <li className="list-group-item"><strong>Nutrition</strong></li>
     {
-      nutrition.map((nutritionItem, index) =>
-        (<NutritionItem key={index} nutrition={nutritionItem} />)
+      Object.keys(nutrition).map((key, index) =>
+        (<li key={index} className="list-group-item">{key} <span className="badge">{nutrition[key].value} {nutrition[key].unit}</span></li>)
       )
     }
-    <NutritionTotal nutrition={nutrition} />
   </ul>
 
 export default NutritionList

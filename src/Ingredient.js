@@ -1,5 +1,7 @@
 import React from 'react';
 
-const Ingredient = ({ ingredient }) => (<li className="list-group-item"><span className="badge">{ingredient.count}</span> {ingredient.ingredient}</li>)
+const Ingredient = ({ ingredient }) => {
+return (<li className="list-group-item"><span className="badge">{ingredient.amount.name}</span> {ingredient.ingredient}</li>)
+}
 
 export default Ingredient

@@ -1,34 +1,50 @@
 import React, { Component } from 'react'
 class BurritoForm extends Component
 { 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      amount: this.props.ingredientOptions.amounts[1]
+    }
+  }
+  _radioChange(n) {
+    return () => { this.setState({ amount: n }) }
+  }
   _submit(event) {
     event.preventDefault()
     let ingredient = this.refs.ingredient.value
     if(ingredient) {
-      let count = Number.parseInt(this.refs.count.value, 10)
-      this.props.addIngredient({ ingredient, count })
-      this.refs.ingredient.value = ''
-      this.refs.count.value = 1
+      let amount = this.state.amount
+      this.props.addIngredient({ ingredient, amount })
       this.refs.ingredient.focus()
     }
   }
   render() {
+    // Radio buttons
+    let radios = this.props.ingredientOptions.amounts
+      .map((amount, index) =>
+      <div key={index} className="radio">
+        <label>
+          <input type="radio" onChange={this._radioChange(amount)} checked={this.state.amount.name===amount.name} />
+            {amount.name}
+        </label>
+      </div>
+      )
+    // Select options
+    let options = this.props.ingredientOptions.options.map((value, index) => {
+      let val = value.name === 'Sausage' && this.props.clickCount > 5 ? 'Ethnic ' + value.name: value.name
+      return <option value={val} key={index}>{val}</option>
+    })
     return <form onSubmit={this._submit.bind(this)} >
       <div className="form-group">
         <label htmlFor="ingredient">Ingredient</label>
         <select ref="ingredient" id="ingredient" className="form-control">
-          <option value="Egg">Egg</option>
-          <option value="Bacon">Bacon</option>
-          <option value="Cheese">Cheese</option>
-          <option value="Potato">Potato</option>
-          <option value="Green Chili">Green Chili</option>
-          <option value="Jalapeno">Jalapeno</option>
-          {this.props.clickCount > 5?<option value="Ethnic Sausage">Ethnic Sausage</option>:(<option value="Sausage">Sausage</option>)}
+          {options}
         </select>
       </div>
       <div className="form-group">
-        <label htmlFor="count">Count</label>
-        <input type="number" ref="count" id="count" min="1" defaultValue="1" className="form-control"/>
+        {radios}
       </div>
       <button type="submit" className="btn btn-primary">Add Ingredient</button>
     </form>
