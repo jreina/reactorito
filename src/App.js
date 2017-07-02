@@ -27,6 +27,24 @@ class App extends Component {
     ],
     options: [
       {
+        name: 'Egg',
+        nutrition: {
+          Calories: { value: 91, unit: 'kcal' },
+          Sodium: { value: 88, unit: 'mg' },
+          'Total Fat': { value: 7, unit: 'g' },
+          Potassium: { value: 81, unit: 'mg' },
+          Saturated: { value: 2, unit: 'g' },
+          'Total Carbs': { value: 0, unit: 'g' },
+          Polyunsaturated: { value: 2, unit: 'g' },
+          'Dietary Fiber': { value: 0, unit: 'g' },
+          Monounsaturated: { value: 3, unit: 'g' },
+          Sugars: { value: 1, unit: 'g' },
+          Trans: { value: 0, unit: 'g' },
+          Protein: { value: 6, unit: 'g' },
+          Cholesterol: { value: 169, unit: 'mg' }
+        }
+      },
+      {
         name: 'Cheese',
         nutrition: {
           Calories: { value: 115, unit: 'kcal' },
@@ -60,24 +78,6 @@ class App extends Component {
           Trans: { value: 0, unit: 'g' },
           Protein: { value: 6, unit: 'g' },
           Cholesterol: { value: 20, unit: 'mg' }
-        }
-      },
-      {
-        name: 'Egg',
-        nutrition: {
-          Calories: { value: 91, unit: 'kcal' },
-          Sodium: { value: 88, unit: 'mg' },
-          'Total Fat': { value: 7, unit: 'g' },
-          Potassium: { value: 81, unit: 'mg' },
-          Saturated: { value: 2, unit: 'g' },
-          'Total Carbs': { value: 0, unit: 'g' },
-          Polyunsaturated: { value: 2, unit: 'g' },
-          'Dietary Fiber': { value: 0, unit: 'g' },
-          Monounsaturated: { value: 3, unit: 'g' },
-          Sugars: { value: 1, unit: 'g' },
-          Trans: { value: 0, unit: 'g' },
-          Protein: { value: 6, unit: 'g' },
-          Cholesterol: { value: 169, unit: 'mg' }
         }
       },
       {
@@ -177,13 +177,13 @@ class App extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-3">
-              <BurritoForm addIngredient={this._addIngredient.bind(this)} clickCount={this.state.clickCount} ingredientOptions={this._ingredients} />
+              <NutritionContainer ingredients={this.state.currentBurrito} options={this._ingredients} />
             </div>
             <div className="col-md-3">
               <IngredientsContainer ingredients={this.state.currentBurrito} addBurrito={this._addBurrito.bind(this)} />
             </div>
             <div className="col-md-3">
-              <NutritionContainer ingredients={this.state.currentBurrito} options={this._ingredients} />
+              <BurritoForm addIngredient={this._addIngredient.bind(this)} clickCount={this.state.clickCount} ingredientOptions={this._ingredients} />
             </div>
             <div className="col-md-3">
               <BurritoList burritos={this.state.burritos} removeBurrito={this._removeBurrito.bind(this)} />

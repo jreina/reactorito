@@ -1,10 +1,10 @@
 import React from 'react'
 
 const BurritoCondensed = ({ingredients, burritoIndex, remove}) =>
-<div className="alert alert-success alert-dismissable">
+  <li className="list-group-item">
   <button type="button" className="close" onClick={remove}>&times;</button>
-  <strong>Burrito #{burritoIndex + 1}</strong><br />
+  <h3>Burrito #{burritoIndex + 1}</h3>
   {ingredients.map((ingredient, index) => <p key={index}>{ingredient.amount.name} <strong>{ingredient.ingredient}</strong></p>)}
-</div>
+  </li>
 
 export default BurritoCondensed

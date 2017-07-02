@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-class BurritoForm extends Component
-{ 
+class BurritoForm extends Component {
   constructor(props) {
     super(props)
 
@@ -14,7 +13,7 @@ class BurritoForm extends Component
   _submit(event) {
     event.preventDefault()
     let ingredient = this.refs.ingredient.value
-    if(ingredient) {
+    if (ingredient) {
       let amount = this.state.amount
       this.props.addIngredient({ ingredient, amount })
       this.refs.ingredient.focus()
@@ -24,30 +23,38 @@ class BurritoForm extends Component
     // Radio buttons
     let radios = this.props.ingredientOptions.amounts
       .map((amount, index) =>
-      <div key={index} className="radio">
-        <label>
-          <input type="radio" onChange={this._radioChange(amount)} checked={this.state.amount.name===amount.name} />
+        <div key={index} className="radio">
+          <label>
+            <input type="radio" onChange={this._radioChange(amount)} checked={this.state.amount.name === amount.name} />
             {amount.name}
-        </label>
-      </div>
+          </label>
+        </div>
       )
     // Select options
     let options = this.props.ingredientOptions.options.map((value, index) => {
-      let val = value.name === 'Sausage' && this.props.clickCount > 5 ? 'Ethnic ' + value.name: value.name
+      let val = (value.name === 'Sausage' && this.props.clickCount > 5 ? 'Ethnic ' + value.name : value.name)
       return <option value={val} key={index}>{val}</option>
     })
-    return <form onSubmit={this._submit.bind(this)} >
-      <div className="form-group">
-        <label htmlFor="ingredient">Ingredient</label>
-        <select ref="ingredient" id="ingredient" className="form-control">
-          {options}
-        </select>
-      </div>
-      <div className="form-group">
-        {radios}
-      </div>
-      <button type="submit" className="btn btn-primary">Add Ingredient</button>
-    </form>
+    return (<form onSubmit={this._submit.bind(this)}>
+      <ul className="list-group">
+        <li className="list-group-item">
+          <div className="form-group">
+            <label htmlFor="ingredient">Ingredient</label>
+            <select ref="ingredient" id="ingredient" className="form-control">
+              {options}
+            </select>
+          </div>
+        </li>
+        <li className="list-group-item">
+          <div className="form-group">
+            {radios}
+          </div>
+        </li>
+        <li className="list-group-item">
+          <button type="submit" className="btn btn-primary btn-block">Add Ingredient</button>
+        </li>
+      </ul>
+    </form>)
   }
 }
 export default BurritoForm
