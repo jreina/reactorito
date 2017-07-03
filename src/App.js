@@ -24,12 +24,17 @@ class App extends Component {
   }
   getInitialState = () => {
     let state = {
-      name: '',
       burritos: [],
       currentBurrito: this.getDefaultBurrito(),
       ingredients: { options: [], amounts: [] }
     }
     return state
+  }
+  _resetState = () => {
+    return {
+      burritos: [],
+      currentBurrito: this.getDefaultBurrito()
+    }
   }
   _addBurrito() {
     this.setState({ burritos: this.state.burritos.concat([this.state.currentBurrito]), currentBurrito: this.getDefaultBurrito() })
@@ -44,7 +49,7 @@ class App extends Component {
     this.setState({ currentBurrito: ingredients.concat(newIngredient) })
   }
   _awesome() {
-    this.setState(this.getInitialState())
+    this.setState(this._resetState())
   }
   render() {
     return (
