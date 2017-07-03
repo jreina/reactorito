@@ -4,7 +4,7 @@ import NutritionList from './NutritionList'
 import { find } from 'ramda'
 
 const NutritionContainer = ({ options, ingredients }) => {
-  if (ingredients.length) {
+  if (ingredients.length && options.options.length) {
 
     // Total up the nutritional values for each selected object
     let totals = ingredients.reduce((memo, ingredient) => {

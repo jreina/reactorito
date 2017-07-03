@@ -6,7 +6,8 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "ramda": "^0.24.1",
-    "react-scripts": "1.0.7"
+    "react-scripts": "1.0.7",
+    "browser-http": "^4.0.2"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"
