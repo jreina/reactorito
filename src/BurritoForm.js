@@ -7,8 +7,8 @@ class BurritoForm extends Component {
       amount: this.props.ingredientOptions.amounts[1]
     }
   }
-  _radioChange(n) {
-    return () => { this.setState({ amount: n }) }
+  _radioChange(amount) {
+    return () => { this.setState({ amount }) }
   }
   _submit(event) {
     event.preventDefault()
@@ -31,10 +31,11 @@ class BurritoForm extends Component {
         </div>
       )
     // Select options
-    let options = this.props.ingredientOptions.options.map((value, index) => {
-      let val = (value.name === 'Sausage' && this.props.clickCount > 5 ? 'Ethnic ' + value.name : value.name)
-      return <option value={val} key={index}>{val}</option>
-    })
+    let options = this.props.ingredientOptions.options
+      .filter(value => value.name !== 'Tortilla')
+      .map((value, index) => {
+        return <option value={value.name} key={index}>{value.name}</option>
+      })
     return (<form onSubmit={this._submit.bind(this)}>
       <ul className="list-group">
         <li className="list-group-item">
@@ -50,9 +51,7 @@ class BurritoForm extends Component {
             {radios}
           </div>
         </li>
-        <li className="list-group-item">
-          <button type="submit" className="btn btn-primary btn-block">Add Ingredient</button>
-        </li>
+        <button type="submit" className="btn btn-primary btn-block">Add Ingredient</button>
       </ul>
     </form>)
   }
