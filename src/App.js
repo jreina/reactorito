@@ -12,32 +12,32 @@ import http from 'browser-http'
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = this.getInitialState()
+    this.state = this._getInitialState()
     http.request('https://reactorito-backend.azurewebsites.net/api/GetIngredients',
       { type: 'POST' },
-      function(response, error) {
+      function (response, error) {
         this.setState({ ingredients: response.data })
       }.bind(this))
   }
-  getDefaultBurrito = () => {
+  _getDefaultBurrito = () => {
     return [{ ingredient: 'Tortilla', amount: { quantity: 1, name: 'single' } }]
   }
-  getInitialState = () => {
+  _getInitialState = () => {
     let state = {
       burritos: [],
-      currentBurrito: this.getDefaultBurrito(),
+      currentBurrito: this._getDefaultBurrito(),
       ingredients: { options: [], amounts: [] }
     }
     return state
   }
-  _resetState = () => {
+  _getResetState = () => {
     return {
       burritos: [],
-      currentBurrito: this.getDefaultBurrito()
+      currentBurrito: this._getDefaultBurrito()
     }
   }
   _addBurrito() {
-    this.setState({ burritos: this.state.burritos.concat([this.state.currentBurrito]), currentBurrito: this.getDefaultBurrito() })
+    this.setState({ burritos: this.state.burritos.concat([this.state.currentBurrito]), currentBurrito: this._getDefaultBurrito() })
   }
   _removeBurrito(index) {
     return function () {
@@ -49,7 +49,7 @@ class App extends Component {
     this.setState({ currentBurrito: ingredients.concat(newIngredient) })
   }
   _awesome() {
-    this.setState(this._resetState())
+    this.setState(this._getResetState())
   }
   render() {
     return (
@@ -58,26 +58,27 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React<span>[orito]</span></h2>
         </div>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-3">
-              <NutritionContainer ingredients={this.state.currentBurrito} options={this.state.ingredients} />
+        {
+          !this.state.ingredients.amounts.length || !this.state.ingredients.options.length ?
+            <BurritoFormLoader /> :
+            <div className="container">
+              <div className="row">
+                <div className="col-md-3">
+                  <NutritionContainer ingredients={this.state.currentBurrito} options={this.state.ingredients} />
+                </div>
+                <div className="col-md-3">
+                  <IngredientsContainer ingredients={this.state.currentBurrito} addBurrito={this._addBurrito.bind(this)} />
+                </div>
+                <div className="col-md-3">
+                  <BurritoForm addIngredient={this._addIngredient.bind(this)} ingredientOptions={this.state.ingredients} />
+                </div>
+                <div className="col-md-3">
+                  <BurritoList burritos={this.state.burritos} removeBurrito={this._removeBurrito.bind(this)}
+                    awesome={this._awesome.bind(this)} />
+                </div>
+              </div>
             </div>
-            <div className="col-md-3">
-              <IngredientsContainer ingredients={this.state.currentBurrito} addBurrito={this._addBurrito.bind(this)} />
-            </div>
-            <div className="col-md-3">
-              { !this.state.ingredients.amounts.length || !this.state.ingredients.options.length?
-              <BurritoFormLoader /> :
-              <BurritoForm addIngredient={this._addIngredient.bind(this)} ingredientOptions={this.state.ingredients} />
-              }
-            </div>
-            <div className="col-md-3">
-              <BurritoList burritos={this.state.burritos} removeBurrito={this._removeBurrito.bind(this)}
-                awesome={this._awesome.bind(this)} />
-            </div>
-          </div>
-        </div>
+        }
       </div>
     )
   }

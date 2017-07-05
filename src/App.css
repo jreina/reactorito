@@ -30,3 +30,16 @@
   padding-top: 15px;
   padding-bottom: 15px;
 }
+
+#loader {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  border: 12px solid #000;
+  border-top: 12px solid #61DAFB;
+  animation: linear infinite .6s App-logo-spin;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}

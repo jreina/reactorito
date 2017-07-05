@@ -1,10 +1,6 @@
 import React from 'react'
 
 
-const BurritoFormLoader = () => 
-<div className="alert alert-info">
-  <strong>Loading ingredients...</strong>
-</div>
-
+const BurritoFormLoader = () => <div id="loader">&nbsp;</div>
 
 export default BurritoFormLoader
