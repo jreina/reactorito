@@ -21,7 +21,8 @@ class App extends Component {
     let state = {
       burritos: [],
       currentBurrito: this._getDefaultBurrito(),
-      ingredients: Data
+      ingredients: Data,
+      derps: 0
     }
     return state
   }
@@ -46,12 +47,23 @@ class App extends Component {
   _awesome() {
     this.setState(this._getResetState())
   }
+  _inconspicuousClickHandler() {
+    // Why does this look so gross? How do we fix it?
+    let derps = this.state.derps + 1;
+    if(derps === 5) {
+      let ingredients = Object.assign({}, this.state.ingredients);
+      ingredients.options[1].name = 'Yee';
+      this.setState(ingredients);
+    }
+    this.setState({ derps });
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React<span>[orito]</span></h2>
+      <div className={"app" + (this.state.derps<5?'':' yee-mode')}>
+        <div className="app-header">
+          <img src={this.state.derps<5?logo:'./header-yeecon.png'} className="app-logo" alt="logo" />
+          <h2 className="yee-orange">Welcome to <span className="yee-on">Yee</span><span className="yee-off">Re</span>act<span onClick={this._inconspicuousClickHandler.bind(this)} >[orito]</span></h2>
         </div>
         {
           !this.state.ingredients.amounts.length || !this.state.ingredients.options.length ?

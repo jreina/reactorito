@@ -1,16 +1,27 @@
-.App-logo {
+.app-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
-.App-header {
+.app-header {
   background-color: #222;
   padding: 20px;
   color: white;
   text-align: center;
 }
+.yee-mode .app-header {
+  background-image: url(./header-background.jpg);
+  padding: 108px 0;
+}
 
-.App-intro {
+
+.yee-on { display: none!important; }
+.yee-mode .yee-on { display: inline!important; }
+.yee-mode .yee-off { display: none!important; }
+.yee-mode .yee-orange { color: #ffe350; }
+.yee-mode.app { background-color: orangered; }
+
+.app-intro {
   font-size: large;
 }
 
