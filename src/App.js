@@ -6,18 +6,13 @@ import BurritoForm from './BurritoForm'
 import BurritoFormLoader from './BurritoFormLoader'
 import IngredientsContainer from './IngredientsContainer'
 import NutritionContainer from './NutritionContainer'
-import http from 'browser-http'
+import Data from './Data'
 
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = this._getInitialState()
-    http.request('https://reactorito-backend.azurewebsites.net/api/GetIngredients',
-      { type: 'POST' },
-      function (response, error) {
-        this.setState({ ingredients: response.data })
-      }.bind(this))
   }
   _getDefaultBurrito = () => {
     return [{ ingredient: 'Tortilla', amount: { quantity: 1, name: 'single' } }]
@@ -26,7 +21,7 @@ class App extends Component {
     let state = {
       burritos: [],
       currentBurrito: this._getDefaultBurrito(),
-      ingredients: { options: [], amounts: [] }
+      ingredients: Data
     }
     return state
   }
