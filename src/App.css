@@ -19,7 +19,20 @@
 .yee-mode .yee-on { display: inline!important; }
 .yee-mode .yee-off { display: none!important; }
 .yee-mode .yee-orange { color: #ffe350; }
-.yee-mode.app { background-color: orangered; }
+.yee-mode.app { animation: infinite linear 1s yee-app-background; }
+@keyframes yee-app-background { 
+  0% {background-color: black; }
+  10% { background-color: blue; }
+  20% { background-color: green; }
+  30% { background-color: yellow; }
+  40% { background-color: orange; }
+  50% { background-color: orangered; }
+  60% { background-color: red; }
+  70% { background-color: violet; }
+  80% { background-color: pink; }
+  90% { background-color: white; }
+  100% { background-color: indigo; }
+}
 
 .app-intro {
   font-size: large;
